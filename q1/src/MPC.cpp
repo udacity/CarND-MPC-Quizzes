@@ -208,7 +208,7 @@ int main() {
   plt::title("CTE");
   plt::plot(cte_vals);
   plt::subplot(3, 1, 2);
-  plt::title("Epsi");
+  plt::title("Epsi (Radians)");
   plt::plot(sa_vals);
   plt::subplot(3, 1, 3);
   plt::title("Velocity");
