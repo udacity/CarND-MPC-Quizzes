@@ -5,8 +5,8 @@
 // constrained. You may play around with the cost :-)
 #include "MPC.h"
 
-#include <cppad/cppad.h>
 #include <cmath>
+#include <cppad/cppad.hpp>
 #include <cppad/ipopt/solve.hpp>
 #include <vector>
 #include "matplotlibcpp.h"
