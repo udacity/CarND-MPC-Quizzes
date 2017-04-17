@@ -46,8 +46,8 @@ class FG_eval {
 
     // Deriv Input Cost
     for (int i = 0; i < N - 2; i++) {
-      fg[0] += (CppAD::pow(x[sa_start + i + 1] - x[sa_start + i], 2) +
-                CppAD::pow(x[a_start + i + 1] - x[a_start + i], 2));
+      fg[0] += CppAD::pow(x[sa_start + i + 1] - x[sa_start + i], 2);
+      fg[0] += CppAD::pow(x[a_start + i + 1] - x[a_start + i], 2);
     }
 
     // State Cost
@@ -106,7 +106,8 @@ tuple<vector<double>, vector<double>, double> MPC::Solve(vector<double> x0) {
   xi[25] = epsi;
   xi[50] = v;
 
-  // lower and upper limits for x
+  // lower and upper limits for the state
+
   Dvector xl(nx), xu(nx);
   for (int i = 0; i < sa_start; i++) {
     xl[i] = -1.0e19;
@@ -123,7 +124,7 @@ tuple<vector<double>, vector<double>, double> MPC::Solve(vector<double> x0) {
     xu[i] = 1.0;
   }
 
-  // lower and upper limits for g
+  // lower and upper limits for constraints
   Dvector gl(ng), gu(ng);
   for (int i = 0; i < ng; i++) {
     gl[i] = 0;
@@ -165,6 +166,7 @@ tuple<vector<double>, vector<double>, double> MPC::Solve(vector<double> x0) {
   std::cout << "Velocity " << solution.x[v_start + 1] << std::endl;
   std::cout << "Steering Angle " << solution.x[sa_start] << std::endl;
   std::cout << "Acceleration " << solution.x[a_start] << std::endl;
+  std::cout << std::endl;
 
   auto x1 = {solution.x[cte_start + 1], solution.x[epsi_start + 1],
              solution.x[v_start + 1]};
@@ -199,8 +201,6 @@ int main() {
     v_vals.push_back(x[2]);
     sa_vals.push_back(u[0]);
     a_vals.push_back(u[1]);
-
-    std::cout << std::endl;
   }
 
   // Plot values
