@@ -70,8 +70,10 @@ class FG_eval {
     // TODO: Setup constraints
     //
     // cte[t+1] - (cte[t] + v[t] * sin(epsi[t] + sa[t]) * dt) == 0
-    // epsi[t+1] - (epsi[t] + v[t] * sin(sa[t]) * dt) == 0
+    // epsi[t+1] - (epsi[t] + v[t] * sa[t] * dt) == 0
     // v[t+1] - (v[t] + a[t] * dt) == 0
+    //
+    // NOTE 3: You don't actually have to do the == 0 part.
   }
 };
 }

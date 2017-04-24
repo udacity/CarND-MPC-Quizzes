@@ -85,3 +85,7 @@ A: A or C
 
 C is correct, but, in some situations curvature offers more benefit than others.
 
+
+Ok!
+
+
