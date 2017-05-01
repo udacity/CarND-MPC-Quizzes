@@ -6,6 +6,7 @@
 
 using namespace Eigen;
 
+// Evaluate a polynomial.
 double polyeval(Eigen::VectorXd coeffs, double x) {
   double result = 0.0;
   for (int i = 0; i < coeffs.size(); i++) {
@@ -14,6 +15,7 @@ double polyeval(Eigen::VectorXd coeffs, double x) {
   return result;
 }
 
+// Fit a polynomial.
 Eigen::VectorXd polyfit(Eigen::VectorXd xvals, Eigen::VectorXd yvals,
                         int order) {
   assert(xvals.size() == yvals.size());
