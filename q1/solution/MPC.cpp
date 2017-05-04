@@ -26,7 +26,7 @@ double dt = 0.05;
 // This is the length from front to CoG that has a similar radius.
 const double Lf = 2.67;
 
-double ref_ey = 0;
+double ref_cte = 0;
 double ref_epsi = 0;
 // NOTE: feel free to play around with this
 // or do something completely different
@@ -62,7 +62,7 @@ class FG_eval {
     // TODO: Define the cost related the reference state and
     // any anything you think may be beneficial.
     for (int i = 0; i < N; i++) {
-      fg[0] += CppAD::pow(vars[cte_start + i] - ref_ey, 2);
+      fg[0] += CppAD::pow(vars[cte_start + i] - ref_cte, 2);
       fg[0] += CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
       fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
     }
@@ -100,14 +100,14 @@ class FG_eval {
       AD<double> y1 = vars[y_start + i + 1];
       AD<double> psi1 = vars[psi_start + i + 1];
       AD<double> v1 = vars[v_start + i + 1];
-      AD<double> ey1 = vars[cte_start + i + 1];
+      AD<double> cte1 = vars[cte_start + i + 1];
       AD<double> epsi1 = vars[epsi_start + i + 1];
 
       AD<double> x0 = vars[x_start + i];
       AD<double> y0 = vars[y_start + i];
       AD<double> psi0 = vars[psi_start + i];
       AD<double> v0 = vars[v_start + i];
-      AD<double> ey0 = vars[cte_start + i];
+      AD<double> cte0 = vars[cte_start + i];
       AD<double> epsi0 = vars[epsi_start + i];
 
       AD<double> delta0 = vars[delta_start + i];
@@ -124,7 +124,8 @@ class FG_eval {
       fg[2 + y_start + i] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
       fg[2 + psi_start + i] = psi1 - (psi0 + v0 * delta0 / Lf * dt);
       fg[2 + v_start + i] = v1 - (v0 + a0 * dt);
-      fg[2 + cte_start + i] = ey1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt));
+      fg[2 + cte_start + i] =
+          cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt));
       fg[2 + epsi_start + i] =
           epsi1 - ((psi0 - psides0) + v0 * delta0 / Lf * dt);
     }
@@ -146,7 +147,7 @@ vector<double> MPC::Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs) {
   double y = x0[1];
   double psi = x0[2];
   double v = x0[3];
-  double ey = x0[4];
+  double cte = x0[4];
   double epsi = x0[5];
 
   // number of independent variables
@@ -166,7 +167,7 @@ vector<double> MPC::Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs) {
   vars[y_start] = y;
   vars[psi_start] = psi;
   vars[v_start] = v;
-  vars[cte_start] = ey;
+  vars[cte_start] = cte;
   vars[epsi_start] = epsi;
 
   // Lower and upper limits for x
@@ -208,14 +209,14 @@ vector<double> MPC::Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs) {
   constraints_lowerbound[y_start] = y;
   constraints_lowerbound[psi_start] = psi;
   constraints_lowerbound[v_start] = v;
-  constraints_lowerbound[cte_start] = ey;
+  constraints_lowerbound[cte_start] = cte;
   constraints_lowerbound[epsi_start] = epsi;
 
   constraints_upperbound[x_start] = x;
   constraints_upperbound[y_start] = y;
   constraints_upperbound[psi_start] = psi;
   constraints_upperbound[v_start] = v;
-  constraints_upperbound[cte_start] = ey;
+  constraints_upperbound[cte_start] = cte;
   constraints_upperbound[epsi_start] = epsi;
 
   // Object that computes objective and constraints

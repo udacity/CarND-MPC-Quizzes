@@ -26,7 +26,7 @@ double dt = ? ;
 // This is the length from front to CoG that has a similar radius.
 const double Lf = 2.67;
 
-double ref_ey = 0;
+double ref_cte = 0;
 double ref_epsi = 0;
 // NOTE: feel free to play around with this
 // or do something completely different
@@ -115,7 +115,7 @@ vector<double> MPC::Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs) {
   double y = x0[1];
   double psi = x0[2];
   double v = x0[3];
-  double ey = x0[4];
+  double cte = x0[4];
   double epsi = x0[5];
 
   // number of independent variables
@@ -135,7 +135,7 @@ vector<double> MPC::Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs) {
   vars[y_start] = y;
   vars[psi_start] = psi;
   vars[v_start] = v;
-  vars[cte_start] = ey;
+  vars[cte_start] = cte;
   vars[epsi_start] = epsi;
 
   // Lower and upper limits for x
@@ -177,14 +177,14 @@ vector<double> MPC::Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs) {
   constraints_lowerbound[y_start] = y;
   constraints_lowerbound[psi_start] = psi;
   constraints_lowerbound[v_start] = v;
-  constraints_lowerbound[cte_start] = ey;
+  constraints_lowerbound[cte_start] = cte;
   constraints_lowerbound[epsi_start] = epsi;
 
   constraints_upperbound[x_start] = x;
   constraints_upperbound[y_start] = y;
   constraints_upperbound[psi_start] = psi;
   constraints_upperbound[v_start] = v;
-  constraints_upperbound[cte_start] = ey;
+  constraints_upperbound[cte_start] = cte;
   constraints_upperbound[epsi_start] = epsi;
 
   // Object that computes objective and constraints
