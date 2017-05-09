@@ -13,6 +13,8 @@ To do a quiz:
 3. Change into the build directory, `cd build`.
 4. Compile the project, `cmake .. && make`.
 
+A solution for each quiz is presented in the solution directory.
+
 ## Dependencies
 
 The *Global Kinematic Quiz* and *Polynomial Fitting* quizzes have all the dependencies in repo. For the *MPC* quiz

@@ -47,12 +47,14 @@ int main() {
   // y waypoint coordinates
   yvals << 5.17, -2.25, -15.306, -29.46, -42.85, -57.6116;
 
-  // TODO: use `polyfit` to fit a third order polynomial to the (x, y)
-  // coordinates.
+  // Pass the x and y waypoint coordinates along the order of the polynomial.
+  // In this case, 3.
   auto coeffs = polyfit(xvals, yvals, 3);
 
   for (double x = 0; x <= 20; x += 1.0) {
-    // TODO: use `polyeval` to evaluate the x values.
+    // We can evaluate the polynomial at a x coordinate by calling `polyeval`.
+    // The first argument being the coefficients, `coeffs`.
+    // The second being the x coordinate, `x`.
     auto v = polyeval(coeffs, x);
     std::cout << v << std::endl;
   }
