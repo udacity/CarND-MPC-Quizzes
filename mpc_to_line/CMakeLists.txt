@@ -15,6 +15,6 @@ include_directories(src/Eigen-3.3)
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 
-add_executable(q1 ${sources})
+add_executable(mpc ${sources})
 
-target_link_libraries(q1 ipopt python)
+target_link_libraries(mpc ipopt python)
