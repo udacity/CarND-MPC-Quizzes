@@ -1,4 +1,4 @@
-project(q1)
+project(mpc)
 
 cmake_minimum_required (VERSION 3.5)
 
