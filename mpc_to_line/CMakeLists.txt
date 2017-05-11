@@ -17,4 +17,4 @@ link_directories(/usr/local/lib)
 
 add_executable(mpc ${sources})
 
-target_link_libraries(mpc ipopt python)
+target_link_libraries(mpc ipopt python2.7)

@@ -14,12 +14,13 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     cppad \
-    python-dev
+    python-matplotlib \ 
+    python2.7-dev
 
 ADD install_ipopt.sh .
 
-RUN wget https://www.coin-or.org/download/source/Ipopt/Ipopt-3.12.1.zip && unzip Ipopt-3.12.1.zip && rm Ipopt-3.12.1.zip
-RUN bash install_ipopt.sh Ipopt-3.12.1
+RUN wget https://www.coin-or.org/download/source/Ipopt/Ipopt-3.12.7.zip && unzip Ipopt-3.12.7.zip && rm Ipopt-3.12.7.zip
+RUN bash install_ipopt.sh Ipopt-3.12.7
 
 RUN rm -rf /var/lib/apt/lists/*
 
