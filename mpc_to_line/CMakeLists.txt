@@ -17,4 +17,8 @@ link_directories(/usr/local/lib)
 
 add_executable(mpc ${sources})
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 target_link_libraries(mpc ipopt python2.7)
+else()
+target_link_libraries(mpc ipopt python)
+endif()
