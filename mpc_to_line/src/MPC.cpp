@@ -195,7 +195,6 @@ vector<double> MPC::Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs) {
   options += "Integer print_level  0\n";
   options += "Sparse  true        forward\n";
   options += "Sparse  true        reverse\n";
-  options += "Numeric max_cpu_time          0.05\n";
 
   // place to return solution
   CppAD::ipopt::solve_result<Dvector> solution;
@@ -306,6 +305,15 @@ int main() {
     a_vals.push_back(vars[7]);
 
     state << vars[0], vars[1], vars[2], vars[3], vars[4], vars[5];
+    std::cout << "x = " << vars[0] << std::endl;
+    std::cout << "y = " << vars[1] << std::endl;
+    std::cout << "psi = " << vars[2] << std::endl;
+    std::cout << "v = " << vars[3] << std::endl;
+    std::cout << "cte = " << vars[4] << std::endl;
+    std::cout << "epsi = " << vars[5] << std::endl;
+    std::cout << "delta = " << vars[6] << std::endl;
+    std::cout << "a = " << vars[7] << std::endl;
+    std::cout << std::endl;
   }
 
   // Plot values
