@@ -9,7 +9,7 @@ Quizzes for *Vehicle Models* and *Model Predictive Control* sections.
 To do a quiz:
 
 1. Go to quiz directory.
-2. Make a build directory with `mdkir build`.
+2. Make a build directory with `mkdir build`.
 3. Change into the build directory, `cd build`.
 4. Compile the project, `cmake .. && make`.
 
@@ -25,7 +25,7 @@ you'll have to install Ipopt and CppAD.
   * Linux
     * [This Dockerfile](./Dockerfile) might be helpful.
     * You will need a version of Ipopt 3.12.1 or higher. The version available through `apt-get` is 3.11.x, sudo apt-get install coinor-libipopt-dev. If you can get that version to work great but if not there's a script `install_ipopt.sh` that will install Ipopt. You just need to download the source from [here](https://www.coin-or.org/download/source/Ipopt/) or [here](https://github.com/coin-or/Ipopt/releases/) if the former doesn't work.
-    * Then call `install_ipopt.sh` with the source directory as the first argument, ex: `bash install_ipopt.sh Ipopt-3.12.1`. 
+    * Then call `install_ipopt.sh` with the source directory as the first argument, ex: `bash install_ipopt.sh Ipopt-3.12.1`.
   * Windows: TODO. If you can use the Linux subsystem and follow the Linux instructions.
 * [CppAD](https://www.coin-or.org/CppAD/)
   * Mac: `brew install cppad`
