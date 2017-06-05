@@ -26,8 +26,6 @@ double dt = ? ;
 // This is the length from front to CoG that has a similar radius.
 const double Lf = 2.67;
 
-double ref_cte = 0;
-double ref_epsi = 0;
 // NOTE: feel free to play around with this
 // or do something completely different
 double ref_v = 40;
