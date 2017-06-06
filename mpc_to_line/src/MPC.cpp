@@ -78,12 +78,12 @@ class FG_eval {
     fg[1 + epsi_start] = vars[epsi_start];
 
     // The rest of the constraints
-    for (int i = 0; i < N - 1; i++) {
-      AD<double> x1 = vars[x_start + i + 1];
+    for (int t = 1; t < N; t++) {
+      AD<double> x1 = vars[x_start + t];
 
-      AD<double> x0 = vars[x_start + i];
-      AD<double> psi0 = vars[psi_start + i];
-      AD<double> v0 = vars[v_start + i];
+      AD<double> x0 = vars[x_start + t - 1];
+      AD<double> psi0 = vars[psi_start + t - 1];
+      AD<double> v0 = vars[v_start + t - 1];
 
       // Here's `x` to get you started.
       // The idea here is to constraint this value to be 0.
@@ -93,7 +93,7 @@ class FG_eval {
       // these to the solver.
 
       // TODO: Setup the rest of the model constraints
-      fg[2 + x_start + i] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
+      fg[1 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
     }
   }
 };
