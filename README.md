@@ -21,7 +21,11 @@ The *Global Kinematic Quiz* and *Polynomial Fitting* quizzes have all the depend
 you'll have to install Ipopt and CppAD.
 
 * [Ipopt](https://projects.coin-or.org/Ipopt)
-  * Mac: `brew install ipopt --with-openblas`
+  * Mac:
+    ```
+      brew tap homebrew/science
+      brew install ipopt --with-openblas
+    ```
   * Linux
     * [This Dockerfile](./Dockerfile) might be helpful.
     * You will need a version of Ipopt 3.12.1 or higher. The version available through `apt-get` is 3.11.x, sudo apt-get install coinor-libipopt-dev. If you can get that version to work great but if not there's a script `install_ipopt.sh` that will install Ipopt. You just need to download the source from [here](https://www.coin-or.org/download/source/Ipopt/).
