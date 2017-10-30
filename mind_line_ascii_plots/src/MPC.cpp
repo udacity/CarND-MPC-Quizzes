@@ -315,20 +315,20 @@ int main() {
    // Write values to file(s) for plotting in gnuplot *.plot file
 
    // write CTE values
-   ofstream outputfile("../data/cte_vals.txt");
+   ofstream cte_file("../data/cte_vals.txt");
    for(int i = 0; i < cte_vals.size(); i++) {
-      outputfile << cte_vals[i] << "\n";
+      cte_file << cte_vals[i] << "\n";
   }
 
   // write Delta values
-  ofstream my_file("../data/delta_vals.txt");
+  ofstream delta_file("../data/delta_vals.txt");
   for(int i = 0; i < cte_vals.size(); i++) {
-      my_file << delta_vals[i] << "\n";
+      delta_file << delta_vals[i] << "\n";
   }
 
   // write velocity values
-  ofstream the_file("../data/v_vals.txt");
+  ofstream vel_file("../data/v_vals.txt");
   for(int i = 0; i < cte_vals.size(); i++) {
-      the_file << v_vals[i] << "\n";
+      vel_file << v_vals[i] << "\n";
   }
 }
