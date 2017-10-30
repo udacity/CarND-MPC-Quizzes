@@ -17,7 +17,7 @@ apt-get install unzip
 # Ipopt: get, install, unzip
 apt-get install gfortran
 wget https://www.coin-or.org/download/source/Ipopt/Ipopt-3.12.7.zip && unzip Ipopt-3.12.7.zip && rm Ipopt-3.12.7.zip
-./install_ipopt.sh
+./install_ipopt.sh Ipopt-*
 
 # CppAD
 apt-get install cppad
