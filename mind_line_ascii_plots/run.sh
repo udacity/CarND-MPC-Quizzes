@@ -6,8 +6,10 @@
 
 # Run Mind the LIne
 cd ./build
-./mpc
+./mpc > ../my_data.txt
 
 # plot data with gnuplot 
 cd ../src
-gnuplot plot_data_ascii.plot
+gnuplot plot_data_ascii.plot > ../my_plots.txt
+
+more ../my_plots.txt
