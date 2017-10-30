@@ -12,6 +12,9 @@
 # Go into the directory where this bash script is contained.
 cd `dirname $0`
 
+# create data directory to house data exports from MPC.cpp
+mkdir data
+
 # Compile code.
 mkdir -p build
 cd build
