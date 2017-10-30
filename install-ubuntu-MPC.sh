@@ -16,6 +16,9 @@ wget https://www.coin-or.org/download/source/Ipopt/Ipopt-3.12.7.zip && unzip Ipo
 # CppAD
 sudo apt-get install cppad
 
+# Gnuplot
+sudo apt-get install gnuplot
+
 # python and matplotlib
 sudo apt-get install python-matplotlib
 sudo apt-get install python2.7-dev
