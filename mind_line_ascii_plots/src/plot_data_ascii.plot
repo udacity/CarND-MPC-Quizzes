@@ -9,12 +9,12 @@ set terminal dumb
 set title 'CTE'
 set style fill solid 0.3
 set style data lines
-plot '../data/cte_vals.txt'
+plot '../data/cte_vals.txt' notitle
 
 # plot detla
 set title 'Delta (Radians)'
-plot '../data/delta_vals.txt'
+plot '../data/delta_vals.txt' notitle
 
 # plot Velocity
 set title 'Velocity'
-plot '../data/v_vals.txt'
+plot '../data/v_vals.txt' notitle
