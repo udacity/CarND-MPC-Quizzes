@@ -17,7 +17,7 @@ At this point in the curriculum students will have set up their SDC Term 2 envir
       brew install ipopt --with-openblas
     ```
 
-  - **For Linux and Windows Ubuntu BASH** installs, please try ```./install-ubuntu-MPC.sh```.  This will install all dependencies and only installation of an Xserver (Windows) should be necessary.  The individual steps have been included for reference.
+  - **For Linux and Windows Ubuntu BASH** installs, please try ```./install-ubuntu-MPC.sh```.  This will install all dependencies and only installation of an Xserver (Windows) should be necessary.  The individual steps have been included for reference.  Please note that for any particular command, including execution of ```.sh``` scripts, it may be necessary to add ```sudo``` prior to the command.  It is also a good practice to run ```sudo apt-get update``` prior to installation of new libraries.
   
   * **Linux:**
     * ```sudo apt-get install gfortran```
