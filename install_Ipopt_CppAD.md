@@ -13,7 +13,7 @@ At this point in the curriculum students will have set up their SDC Term 2 envir
 * [Ipopt](https://projects.coin-or.org/Ipopt)
   * **Mac:**
     ```
-      brew tap homebrew/science
+      brew tap udacity/CarND-MPC-Project https://github.com/udacity/CarND-MPC-Project
       brew install ipopt --with-openblas
     ```
 
