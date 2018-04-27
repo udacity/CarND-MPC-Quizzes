@@ -2,6 +2,8 @@
 #include <math.h>
 #include <iostream>
 #include "Eigen-3.3/Eigen/Core"
+#include <sstream>
+#include <fstream>
 
 //
 // Helper functions
@@ -18,8 +20,8 @@ const double Lf = 2;
 // NOTE: state is [x, y, psi, v]
 // NOTE: actuators is [delta, a]
 Eigen::VectorXd globalKinematic(Eigen::VectorXd state,
-                                Eigen::VectorXd actuators, double dt) {
-  Eigen::VectorXd next_state(state.size());
+                                Eigen::VectorXd actuators, double dt, double Lf) {
+
   return next_state;
 }
 
@@ -37,6 +39,8 @@ void write_log(std::string namefile, int n, Eigen::VectorXd state,Eigen::VectorX
       dataFile << "\n";
       
   }
+  
+}
 
 int main() {
   // [x, y, psi, v]
@@ -52,6 +56,6 @@ int main() {
   write_log(namefile, 75, state, actuators, 0.3, 1);
   namefile = path + "Lf2.txt";
   write_log(namefile, 75, state, actuators, 0.3, 2.67);
-  namefile = path + "Lf5.txt";
+  namefile = path + "Lf4.txt";
   write_log(namefile, 75, state, actuators, 0.3, 4);
 }
