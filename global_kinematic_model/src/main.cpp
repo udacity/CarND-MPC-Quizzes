@@ -21,7 +21,6 @@ const double Lf = 2;
 // NOTE: actuators is [delta, a]
 Eigen::VectorXd globalKinematic(Eigen::VectorXd state,
                                 Eigen::VectorXd actuators, double dt, double Lf) {
-
   return next_state;
 }
 
