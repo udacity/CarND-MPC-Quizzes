@@ -23,17 +23,35 @@ Eigen::VectorXd globalKinematic(Eigen::VectorXd state,
   return next_state;
 }
 
+void write_log(std::string namefile, int n, Eigen::VectorXd state,Eigen::VectorXd actuators, double dt, double Lf) {
+
+  std::ofstream dataFile;
+  dataFile.open(namefile);
+
+  dataFile << state[0] << " " << state[1] << " " <<  state[2]<< " " <<  state[3];
+  dataFile << "\n";
+  for(int i=0; i<n;i++){
+      Eigen::VectorXd next_state = globalKinematic(state, actuators, dt, Lf);
+      state << next_state[0], next_state[1], next_state[2],next_state[3];
+      dataFile << next_state[0] << " " << next_state[1] << " " <<  next_state[2]<< " " <<  next_state[3];
+      dataFile << "\n";
+      
+  }
+
 int main() {
   // [x, y, psi, v]
   Eigen::VectorXd state(4);
   // [delta, v]
   Eigen::VectorXd actuators(2);
 
-  state << 0, 0, deg2rad(45), 1;
+  state << 0, 0, deg2rad(0), 0;
   actuators << deg2rad(5), 1;
 
-  // should be [0.212132, 0.212132, 0.798488, 1.3]
-  auto next_state = globalKinematic(state, actuators, 0.3);
-
-  std::cout << next_state << std::endl;
+  std::string path = "../logs/"; 
+  std::string namefile = path + "Lf1.txt";
+  write_log(namefile, 75, state, actuators, 0.3, 1);
+  namefile = path + "Lf2.txt";
+  write_log(namefile, 75, state, actuators, 0.3, 2.67);
+  namefile = path + "Lf5.txt";
+  write_log(namefile, 75, state, actuators, 0.3, 4);
 }
