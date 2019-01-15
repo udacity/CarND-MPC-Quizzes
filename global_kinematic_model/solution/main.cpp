@@ -3,6 +3,8 @@
 #include <iostream>
 #include "Eigen-3.3/Eigen/Core"
 
+using Eigen::VectorXd;
+
 //
 // Helper functions
 //
@@ -13,19 +15,34 @@ double rad2deg(double x) { return x * 180 / pi(); }
 const double Lf = 2;
 
 // Return the next state.
-//
-// NOTE: state is [x, y, psi, v]
-// NOTE: actuators is [delta, a]
-Eigen::VectorXd globalKinematic(Eigen::VectorXd state,
-                                Eigen::VectorXd actuators, double dt) {
-  // Create a new vector for the next state.
-  Eigen::VectorXd next_state(state.size());
+VectorXd globalKinematic(VectorXd state, VectorXd actuators, double dt);
 
+int main() {
+  // [x, y, psi, v]
+  VectorXd state(4);
+  // [delta, v]
+  VectorXd actuators(2);
+
+  state << 0, 0, deg2rad(45), 1;
+  actuators << deg2rad(5), 1;
+
+  // should be [0.212132, 0.212132, 0.798488, 1.3]
+  auto next_state = globalKinematic(state, actuators, 0.3);
+
+  std::cout << next_state << std::endl;
+}
+
+VectorXd globalKinematic(VectorXd state, VectorXd actuators, double dt) {
+  // Create a new vector for the next state.
+  VectorXd next_state(state.size());
+
+  // NOTE: state is [x, y, psi, v]
   auto x = state(0);
   auto y = state(1);
   auto psi = state(2);
   auto v = state(3);
 
+  // NOTE: actuators is [delta, a]
   auto delta = actuators(0);
   auto a = actuators(1);
 
@@ -38,20 +55,6 @@ Eigen::VectorXd globalKinematic(Eigen::VectorXd state,
   next_state(1) = y + v * sin(psi) * dt;
   next_state(2) = psi + v / Lf * delta * dt;
   next_state(3) = v + a * dt;
+
   return next_state;
-}
-
-int main() {
-  // [x, y, psi, v]
-  Eigen::VectorXd state(4);
-  // [delta, v]
-  Eigen::VectorXd actuators(2);
-
-  state << 0, 0, deg2rad(45), 1;
-  actuators << deg2rad(5), 1;
-
-  // should be [0.212132, 0.212132, 0.798488, 1.3]
-  auto next_state = globalKinematic(state, actuators, 0.3);
-
-  std::cout << next_state << std::endl;
 }

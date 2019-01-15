@@ -3,6 +3,8 @@
 #include <iostream>
 #include "Eigen-3.3/Eigen/Core"
 
+using Eigen::VectorXd;
+
 //
 // Helper functions
 //
@@ -12,22 +14,14 @@ double rad2deg(double x) { return x * 180 / pi(); }
 
 const double Lf = 2;
 
-// TODO: Implement the global kinematic model.
 // Return the next state.
-//
-// NOTE: state is [x, y, psi, v]
-// NOTE: actuators is [delta, a]
-Eigen::VectorXd globalKinematic(Eigen::VectorXd state,
-                                Eigen::VectorXd actuators, double dt) {
-  Eigen::VectorXd next_state(state.size());
-  return next_state;
-}
+VectorXd globalKinematic(VectorXd state, VectorXd actuators, double dt);
 
 int main() {
   // [x, y, psi, v]
-  Eigen::VectorXd state(4);
+  VectorXd state(4);
   // [delta, v]
-  Eigen::VectorXd actuators(2);
+  VectorXd actuators(2);
 
   state << 0, 0, deg2rad(45), 1;
   actuators << deg2rad(5), 1;
@@ -36,4 +30,18 @@ int main() {
   auto next_state = globalKinematic(state, actuators, 0.3);
 
   std::cout << next_state << std::endl;
+}
+
+VectorXd globalKinematic(VectorXd state, VectorXd actuators, double dt) {
+  // Create a new vector for the next state.
+  VectorXd next_state(state.size());
+
+  /**
+   * TODO: Implement the global kinematic model,
+   *   to return the next state from the inputs.
+   */
+
+  // NOTE: state is [x, y, psi, v] and actuators is [delta, a]
+
+  return next_state;
 }
