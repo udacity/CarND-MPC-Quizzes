@@ -7,9 +7,9 @@
 using Eigen::VectorXd;
 
 // Evaluate a polynomial.
-double polyeval(VectorXd coeffs, double x);
+double polyeval(const VectorXd &coeffs, double x);
 // Fit a polynomial.
-VectorXd polyfit(VectorXd xvals, VectorXd yvals, int order);
+VectorXd polyfit(const VectorXd &xvals, const VectorXd &yvals, int order);
 
 int main() {
   VectorXd xvals(6);
@@ -58,7 +58,7 @@ int main() {
   // 11.7925
 }
 
-double polyeval(VectorXd coeffs, double x) {
+double polyeval(const VectorXd &coeffs, double x) {
   double result = 0.0;
   for (int i = 0; i < coeffs.size(); ++i) {
     result += coeffs[i] * pow(x, i);
@@ -68,7 +68,7 @@ double polyeval(VectorXd coeffs, double x) {
 
 // Adapted from:
 // https://github.com/JuliaMath/Polynomials.jl/blob/master/src/Polynomials.jl#L676-L716
-VectorXd polyfit(VectorXd xvals, VectorXd yvals, int order) {
+VectorXd polyfit(const VectorXd &xvals, const VectorXd &yvals, int order) {
   assert(xvals.size() == yvals.size());
   assert(order >= 1 && order <= xvals.size() - 1);
 

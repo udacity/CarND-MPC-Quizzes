@@ -15,7 +15,8 @@ double rad2deg(double x) { return x * 180 / pi(); }
 const double Lf = 2;
 
 // Return the next state.
-VectorXd globalKinematic(VectorXd state, VectorXd actuators, double dt);
+VectorXd globalKinematic(const VectorXd &state, 
+                         const VectorXd &actuators, double dt);
 
 int main() {
   // [x, y, psi, v]
@@ -32,7 +33,8 @@ int main() {
   std::cout << next_state << std::endl;
 }
 
-VectorXd globalKinematic(VectorXd state, VectorXd actuators, double dt) {
+VectorXd globalKinematic(const VectorXd &state, 
+                         const VectorXd &actuators, double dt) {
   // Create a new vector for the next state.
   VectorXd next_state(state.size());
 
