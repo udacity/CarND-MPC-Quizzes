@@ -4,8 +4,6 @@
 #include <vector>
 #include "Eigen-3.3/Eigen/Core"
 
-using namespace std;
-
 class MPC {
  public:
   MPC();
@@ -13,9 +11,9 @@ class MPC {
   virtual ~MPC();
 
   // Solve the model given an initial state.
-  // Return the next state and actuations as a
-  // vector.
-  vector<double> Solve(Eigen::VectorXd x0, Eigen::VectorXd coeffs);
+  // Return the next state and actuations as a vector.
+  std::vector<double> Solve(const Eigen::VectorXd &x0, 
+  							const Eigen::VectorXd &coeffs);
 };
 
-#endif /* MPC_H */
+#endif  // MPC_H
